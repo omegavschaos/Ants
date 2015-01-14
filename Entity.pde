@@ -1,7 +1,7 @@
 
 
 class Entity{
-  final float size = 8;
+  float size = 8;
   
   PVector position;
   Entity(PVector pos2){
@@ -56,5 +56,6 @@ class Entity{
  }
  
  protected void render(){
+   fill(255); 
  }
 }

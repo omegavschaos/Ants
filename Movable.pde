@@ -1,5 +1,6 @@
 class Movable extends Entity{
-  final float maxSpeed = 10;
+  final float maxSpeed = height*width * size;
+  final float maxAccel = maxSpeed/10;
   
   PVector acceleration;
   PVector vitesse;
@@ -16,20 +17,22 @@ class Movable extends Entity{
    return(direction);
   }
   
-  protected void loopWall(PVector windowBorder){
-   if(position.x<0)position.x += windowBorder.x;
-   else if(position.x>windowBorder.x) position.x -= windowBorder.x;
+  protected void loopWall(){
+   if(position.x<0)position.x += width;
+   else if(position.x>width) position.x -= width;
    
-   if(position.y<0)position.y += windowBorder.y;
-   else if(position.y>windowBorder.y) position.y -= windowBorder.y;
+   if(position.y<0)position.y += height;
+   else if(position.y>height) position.y -= height;
  }
  
  private void move(){
    vitesse.add(acceleration);
    if(vitesse.magSq()>maxSpeed)vitesse.limit(maxSpeed);
    acceleration.mult(0);
-   position.add(vitesse);
-   loopWall(windowSize);
+   PVector trueSpeed = vitesse.get();
+   trueSpeed.mult(deltaTime);
+   position.add(trueSpeed);
+   loopWall();
  }
  
  protected void render(){
