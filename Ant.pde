@@ -1,78 +1,22 @@
-static float maxSpeed = 5;
-static float size = 8;
-
-
-class Ant{
-  PVector acceleration;
-  PVector vitesse;
-  PVector position;
+class Ant extends Movable{
+  PVector nid;
   
-  Ant(float x,float y,float vx, float vy){
-    position = new PVector(x,y);
-    vitesse = new PVector(vx,vy);
-    acceleration = new PVector(0,0);
+  Ant(PVector pos2,PVector vit2,PVector nid){
+    super(pos2,vit2);
+    this.nid = nid;
   }
-  
-  public PVector virtualPosition(Ant a){
-   //*/
-   float distance =position.dist(a.position);
-   
-   PVector virtualPosition = position.get();
-   
-   PVector pointBis = new PVector(windowSize.x,0);
-   float result;
-   //*/
-   pointBis.add(virtualPosition);
-   result = pointBis.dist(a.position);
-   if(distance>result){
-     virtualPosition = pointBis;
-     distance = result;
-   }else{
-     pointBis = new PVector(-windowSize.x,0);
-     pointBis.add(virtualPosition);
-     result = pointBis.dist(a.position);
-     if(distance>result){
-       virtualPosition = pointBis;
-       distance = result;
-     }
-   }
-   //*/
-  
-   pointBis = new PVector(0,windowSize.y);
-   pointBis.add(virtualPosition);
-   result = pointBis.dist(a.position);
-   if(distance>result){
-     virtualPosition = pointBis;
-   }else{
-   pointBis = new PVector(0,-windowSize.y);
-     pointBis.add(virtualPosition);
-     result = pointBis.dist(a.position);
-     if(distance>result){
-       virtualPosition = pointBis;
-     }
-   }
-   //*/
-//   return position.get();
-   return virtualPosition;
- }
-  
- public float distance(Ant a){
-   return(virtualPosition(a).dist(a.position));
+
+ void run(){
+   if(true)
+     acceleration.add(new PVector(random(-1,1),random(-1,1)));
+   super.run();
  }
  
  
- private void loopWall(PVector windowBorder){
-   if(position.x<0)position.x += windowBorder.x;
-   else if(position.x>windowBorder.x) position.x -= windowBorder.x;
-   
-   if(position.y<0)position.y += windowBorder.y;
-   else if(position.y>windowBorder.y) position.y -= windowBorder.y;
-   
- }
  
- private void render(){
-   PVector direction = vitesse.get();
-   direction.normalize();
+ protected void render(){
+   super.render();
+   PVector direction = getDirection();
    direction.mult(size);
    PVector pointe = position.get();
    pointe.add(direction);
@@ -89,22 +33,6 @@ class Ant{
    aile2.add(plop);
    triangle(pointe.x,pointe.y,aile.x,aile.y,position.x,position.y);
    triangle(pointe.x,pointe.y,aile2.x,aile2.y,position.x,position.y);
-   
- }
- 
- private void move(){
-   vitesse.add(acceleration);
-   if(vitesse.magSq()>maxSpeed)vitesse.limit(maxSpeed);
-   acceleration.mult(0);
-   position.add(vitesse);
- }
- 
- void run(){
-   if(true)
-     acceleration.add(new PVector(random(-1,1),random(-1,1)));
-   move();
-   loopWall(windowSize);
-   render();
  }
  
 }

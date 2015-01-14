@@ -9,7 +9,8 @@ void setup(){
   colonie = new Colonie();
   PVector center = windowSize.get();
   center.mult(0.5);
-  colonie.createAnt(250,center);
+  colonie.createAnt(250,center.get());
+  
 }
 
 void draw(){
