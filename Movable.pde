@@ -1,5 +1,5 @@
 class Movable extends Entity{
-  final float maxSpeed = height*width * size;
+  final float maxSpeed = 100;
   final float maxAccel = maxSpeed/10;
   
   PVector acceleration;
@@ -13,8 +13,28 @@ class Movable extends Entity{
   
   public PVector getDirection(){
    PVector direction = vitesse.get();
+   if(direction.mag()==0)
+     direction.add(new PVector(random(-1,1),random(-1,1)));//assure une direction non nulle.
    direction.normalize();
+   
    return(direction);
+  }
+  
+  public void goTo(PVector pos){
+    PVector p = pos.get();
+    p.sub(position);
+    p.normalize();
+    p.mult(maxAccel);
+    acceleration.add(p);
+  }
+  
+  protected void randomMove(){
+   PVector dir = getDirection();
+   PVector force = new PVector(dir.y,-dir.x);
+   force.mult(random(-1,1));
+   force.add(dir);
+   force.mult(maxAccel);
+   acceleration.add(force);
   }
   
   protected void loopWall(){

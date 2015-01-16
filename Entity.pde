@@ -8,6 +8,14 @@ class Entity{
     position = pos2;
   }
   
+  public boolean isOn(Entity ent){
+    return(distance(ent)< size + ent.size);
+  }
+  
+  public boolean isAttract(GravityEntity ge){
+    return(distance(ge)< ge.champ);
+  }
+  
   public PVector virtualPosition(Entity entity){
    //*/
    float distance =position.dist(entity.position);
@@ -56,6 +64,5 @@ class Entity{
  }
  
  protected void render(){
-   fill(255); 
  }
 }

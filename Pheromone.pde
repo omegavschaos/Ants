@@ -1,26 +1,32 @@
-class Pheromone extends Entity{
-  final float fullLife = 100;
+class Pheromone extends GravityEntity{
+  final float fullLife = 3;
   float life;
   
   Ant Parent;
   
   Pheromone(Ant parent){
-    super(parent.position);
+    super(parent.position.get());
     Parent = parent;
     life = fullLife;
-    size = size * 10;
-  }
-  
-  protected void render(){
-    super.render();
-    fill(200,life/fullLife);
-    ellipse(position.x,position.y,size,size);
+    size = size * 8;
+    champ = size;
   }
   
   public void run(){
+    
     if(life>0){
-      life=-deltaTime;
+      
+      life-=deltaTime;
       render();
+    }else{
+      Parent.Pheromones.remove(this);
     }
+  }
+  
+  void render(){
+    super.render();
+    noFill();
+    ellipse(position.x,position.y, size,size);
+    fill(255);
   }
 }
