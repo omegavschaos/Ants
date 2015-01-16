@@ -2,22 +2,24 @@ static PVector windowSize = new PVector(1270,800);
 static float deltaTime;
 
 static int backgroundCode = 51;
-Colonie colonie;
+Nid nid;
+FoodFactory foods;
+
 
 
 void setup(){
   size((int) windowSize.x,(int) windowSize.y);
-  colonie = new Colonie();
   PVector center = windowSize.get();
   center.mult(0.5);
-  colonie.createAnt(100,center.get());
-  
+  nid = new Nid(center);
+  nid.createAnt(200,center.get());
+  foods = new FoodFactory(1000);
+  foods.createFood(10);
 }
 
 void draw(){
-  deltaTime = 1/(60*frameRate);
-  //println(deltaTime);
-  //println(frameRate);
+  deltaTime = 1/frameRate;
   background(backgroundCode);
-  colonie.run();
+  nid.run();
+  foods.run();
 }
