@@ -12,8 +12,8 @@ void setup(){
   PVector center = windowSize.get();
   center.mult(0.5);
   nid = new Nid(center);
-  nid.createAnt(200,center.get());
-  foods = new FoodFactory(1000);
+  nid.createAnt(100,center.get());
+  foods = new FoodFactory(10000);
   foods.createFood(10);
 }
 
