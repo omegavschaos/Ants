@@ -1,5 +1,3 @@
-
-
 class Entity{
   float size = 8;
   

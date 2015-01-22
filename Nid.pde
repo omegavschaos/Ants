@@ -5,7 +5,7 @@ class Nid extends GravityEntity {
   Nid(PVector pos2){
     super(pos2);
     colonie = new ArrayList<Ant>();
-    size = 2*size;
+    size = 3*size;
     champ = 1000;
   }
   
@@ -16,10 +16,15 @@ class Nid extends GravityEntity {
   }
   
   void run(){
-    for(Ant a : colonie){
-      a.run();
-    }
-    render();
+   for(Ant a : colonie){
+     for(Pheromone p:(ArrayList<Pheromone>) a.Pheromones.clone()){
+       p.run();
+     }
+   }
+   for(Ant a : colonie){
+     a.run();
+   }
+   render();
   }
   
   void render(){

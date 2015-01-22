@@ -4,7 +4,7 @@ static float deltaTime;
 static int backgroundCode = 51;
 Nid nid;
 FoodFactory foods;
-
+boolean RenderPheromone;
 
 
 void setup(){
@@ -18,8 +18,35 @@ void setup(){
 }
 
 void draw(){
-  deltaTime = 1/frameRate;
+  deltaTime = RenderPheromone?1/30f:1/frameRate;
   background(backgroundCode);
-  nid.run();
+  drawRenderMode();
   foods.run();
+  nid.run();
+}
+
+void drawRenderMode(){
+  textSize(32);  
+  String msg = "Le rendu des phéromones est ";
+  if(RenderPheromone){
+    fill(green(100));
+    msg += "activé";
+  }else{
+    fill(red(100));
+    msg += "désactivé";
+  }
+  text(msg, 10, 30);
+  fill(255);
+}
+
+void keyPressed() {
+  if (keyPressed) {
+    if (key == 'y' || key == 'Y') {
+      RenderPheromone = true;
+    }else if (key == 'n' || key == 'N'){
+      RenderPheromone = false;
+    }else if (key == ' '){
+      RenderPheromone = !RenderPheromone;
+    }
+  }
 }

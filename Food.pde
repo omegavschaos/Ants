@@ -6,7 +6,8 @@ class Food extends GravityEntity{
     super(pos2);
     maxQuantity = quantity;
     Quantity = quantity;
-    champ = size * 2;
+    attractStrength = quantity*100;
+    champ = size*2;
   }
   
   

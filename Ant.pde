@@ -1,5 +1,5 @@
 class Ant extends Movable{
-  final float maxCountdownPheromone = 0.5;
+  final float maxCountdownPheromone = 0.1;
   final int maxFood=10;
   float countdownPheromone;
   ArrayList<Pheromone> Pheromones;
@@ -17,9 +17,6 @@ class Ant extends Movable{
  void run(){
    if(isEmpty()){
      searchFood();
-     if(isEmpty()){
-       randomMove();
-     }
    }else{
      createPheromone();
      goBack();
@@ -27,11 +24,6 @@ class Ant extends Movable{
    
    if(countdownPheromone>0)
      countdownPheromone-=deltaTime;
-   
-   
-   for(Pheromone p:(ArrayList<Pheromone>) Pheromones.clone()){
-     p.run();
-   }
    
    super.run();
  }
@@ -62,6 +54,9 @@ class Ant extends Movable{
          take(food);
        }
      }
+   }
+   if(isEmpty()){
+     randomMove();
    }
  }
  
