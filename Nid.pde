@@ -28,8 +28,9 @@ class Nid extends GravityEntity {
   }
   
   void render(){
+    fill(0,100,0);
     triangle(position.x-size,position.y-size,position.x+size,position.y-size, position.x,position.y+size);
-  
+    fill(255);
   }
 }
 

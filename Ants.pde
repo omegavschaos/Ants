@@ -29,10 +29,10 @@ void drawRenderMode(){
   textSize(32);  
   String msg = "Le rendu des phéromones est ";
   if(RenderPheromone){
-    fill(green(100));
+    fill(0,200,0);
     msg += "activé";
   }else{
-    fill(red(100));
+    fill(200,0,0);
     msg += "désactivé";
   }
   text(msg, 10, 30);
