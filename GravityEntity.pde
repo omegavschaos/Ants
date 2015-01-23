@@ -16,5 +16,9 @@ class GravityEntity extends Entity{
   //*/
   }
   
-  
+  public void render(){
+    if(RenderPheromone){
+      ellipse(position.x,position.y, champ,champ);
+    }
+  }
 }

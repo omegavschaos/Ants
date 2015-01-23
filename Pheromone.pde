@@ -24,14 +24,11 @@ class Pheromone extends GravityEntity{
   }
   
   void render(){
-    if(RenderPheromone){
-      super.render();
-      noFill();
-      stroke(blue(200));
-      ellipse(position.x,position.y, size,size);
-      stroke(0);
-      fill(255);
-    }
+    noFill();
+    stroke(blue(200));
+    super.render();
+    stroke(0);
+    fill(255);
     //*/
   }
 }

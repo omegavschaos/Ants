@@ -7,16 +7,23 @@ class Food extends GravityEntity{
     maxQuantity = quantity;
     Quantity = quantity;
     attractStrength = quantity*100;
-    champ = size*2;
+    champ = size*3;
   }
   
   
-  protected void render(){
+  public void render(){
     if(Quantity<=0){
       foods.remove(this);
       foods.createFood(1);
     }
-    rect(position.x - size,position.y - size,size*2,size*2);
+    
+    noFill();
+    stroke(0,0,100);
+    super.render();
+    stroke(0);
+    fill(88, 41, 0);
+    rect(position.x - size/2,position.y - size/2,size,size);
+    fill(255);
   }
     
 }

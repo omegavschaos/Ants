@@ -80,8 +80,10 @@ class Ant extends Movable{
  
  protected void render(){
    super.render();
-   if(!isEmpty())
-     fill(red(255));
+   if(!isEmpty()){
+     fill(100,0,0);
+     stroke(200,0,0);
+   }
    PVector direction = getDirection();
    direction.mult(size);
    PVector pointe = position.get();
@@ -100,6 +102,7 @@ class Ant extends Movable{
    triangle(pointe.x,pointe.y,aile.x,aile.y,position.x,position.y);
    triangle(pointe.x,pointe.y,aile2.x,aile2.y,position.x,position.y);
    fill(255);
+   stroke(0);
  }
  
 }
